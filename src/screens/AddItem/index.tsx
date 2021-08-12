@@ -52,6 +52,7 @@ export function AddItem() {
         onDone={() => {
           handleSave(category);
         }}
+        title="Add Item"
       />
       <TextArea onChangeText={setName} placeholder="Item Name" />
       <TextArea

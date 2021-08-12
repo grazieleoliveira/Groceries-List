@@ -6,10 +6,9 @@ import * as S from './styles';
 
 type Props = {
   title: string;
-  action?: ReactNode;
 };
 
-export function Header({title, action}: Props) {
+export function Header({title}: Props) {
   // Navegar paginas, colocar na outra
   // const navigation = useNavigation();
 
@@ -20,7 +19,7 @@ export function Header({title, action}: Props) {
   const navigation = useNavigation();
 
   function handleNavigate() {
-    navigation.navigate('Login');
+    navigation.navigate('Profile');
   }
 
   if (title === 'Grocery List') {

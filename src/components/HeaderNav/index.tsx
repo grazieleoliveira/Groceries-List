@@ -6,10 +6,11 @@ import {theme} from '../../global/styles/theme';
 import {Header} from '../Header';
 
 type Props = {
+  title: string;
   onDone(): void;
 };
 
-export function HeaderNav({onDone}: Props) {
+export function HeaderNav({onDone, title}: Props) {
   const navigation = useNavigation();
 
   function handleGoBack() {
@@ -21,7 +22,7 @@ export function HeaderNav({onDone}: Props) {
       <S.ButtonLeftArrow onPress={handleGoBack}>
         <Icon name="chevron-left" size={30} color={theme.colors.secondary100} />
       </S.ButtonLeftArrow>
-      <Header title="New Item" />
+      <Header title={title} />
       <S.ButtonDone onPress={onDone}>
         <Icon name="done" size={30} color={theme.colors.secondary100} />
       </S.ButtonDone>
