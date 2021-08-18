@@ -6,9 +6,10 @@ import * as S from './styles';
 
 type Props = {
   title: string;
+  type: string
 };
 
-export function Header({title}: Props) {
+export function Header({title, type}: Props) {
   // Navegar paginas, colocar na outra
   // const navigation = useNavigation();
 
@@ -22,7 +23,7 @@ export function Header({title}: Props) {
     navigation.navigate('Profile');
   }
 
-  if (title === 'Grocery List') {
+  if (type === 'Home') {
     return (
       <S.Container>
         <S.ProfileTouchable onPress={handleNavigate}>

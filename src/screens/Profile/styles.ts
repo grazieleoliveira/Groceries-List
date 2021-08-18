@@ -10,11 +10,12 @@ export const ProfileImage = styled.View`
   background-color: rgba(152, 152, 152, 0.1);
 `;
 
-export const ProfileEmail = styled.Text`
-  margin-top: 12px;
+export const ProfileEmail = styled.TextInput`
+  margin-top: 0px;
   font-size: 16px;
   color: ${theme.colors.secondary30};
   align-self: center;
+  text-align: center;
 `;
 
 export const EditButton = styled.TouchableOpacity`

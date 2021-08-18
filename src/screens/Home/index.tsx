@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-
+import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {Header} from '../../components/Header';
 import {Info} from '../../components/Info';
@@ -10,7 +10,7 @@ import {Content} from '../../components/Content';
 
 export function Home() {
   const navigation = useNavigation();
-
+  const {currentUser} = useSelector((state) => state.user);
   const [search, setSearch] = useState('');
 
   function handleAddItem() {
@@ -19,7 +19,7 @@ export function Home() {
 
   return (
     <S.Background>
-      <Header title="Grocery List" />
+      <Header title={`${currentUser.fullName} List`} type="Home" />
 
       <SearchArea
         maxLength={50}
