@@ -1,19 +1,60 @@
 import styled from 'styled-components/native';
 import {theme} from '../../global/styles/theme';
 
-export const SelectContainer = styled.View`
-  padding-left: 24px;
-  padding-right: 24px;
-  margin-top: 18px;
+export const Container = styled.View`
+  width: 100%;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: white;
 `;
 
-export const SelectCategory = styled.TouchableOpacity`
-  width: 100%;
-  height: 50px;
-  background-color: ${theme.colors.secondary60};
-  border-radius: 25px;
-  font-size: 16px;
-  border-color: ${theme.colors.secondary85};
-  align-items: center;
-  justify-content: center;
+export const Label = styled.Text`
+  font-size: 24px;
+  color: ${theme.colors.primary};
 `;
+
+export const PlaceholderText = styled.Text`
+  font-size: 22px;
+  color: ${theme.colors.primary};
+`;
+
+export const Touchable = styled.TouchableOpacity`
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const ContainerPicker = styled.View`
+  padding: 20px 10px;
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 15px;
+  background-color: #eeee;
+`;
+
+export const TitleItem = styled.Text`
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: black;
+`;
+
+export const ContainerList = styled.View`
+  justify-content: flex-start;
+  align-items: flex-start;
+`;
+
+export const ContainerModal = styled.TouchableOpacity`
+  flex: 1;
+`;
+
+export const List = styled.FlatList`
+  height: 110px;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+`;
+
+// export const IconPicker = styled((props) => Icon(props, 'FW'))`
+//   font-size: 20px;
+// `;

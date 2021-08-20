@@ -25,28 +25,20 @@ type Props = {
 };
 
 export function ContentItem({data}: Props) {
-  if (data.name) {
-    return (
-      <Background>
-        <Container>
-          <S.CheckItem />
-          <S.InfoContainer>
-            <S.TextItemName>{data.name} </S.TextItemName>
-            <S.TextPriceUnd>
-              {data.quantity} unid. — {data.price}R$
-            </S.TextPriceUnd>
-          </S.InfoContainer>
-          <EditButton />
-          <DeleteButton />
-        </Container>
-        <S.Divider />
-      </Background>
-    );
-  }
-
   return (
-    <View>
-      <Text>Aaaaaaaaaaaaaaaaaaaaaaa</Text>
-    </View>
+    <Background>
+      <Container>
+        <S.CheckItem />
+        <S.InfoContainer>
+          <S.TextItemName>{data.name} </S.TextItemName>
+          <S.TextPriceUnd>
+            {data.quantity} unid. — {data.price}R$
+          </S.TextPriceUnd>
+        </S.InfoContainer>
+        <EditButton />
+        <DeleteButton />
+      </Container>
+      <S.Divider />
+    </Background>
   );
 }

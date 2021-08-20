@@ -1,17 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
+
+import {Alert} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 import {HeaderNav} from '../../components/HeaderNav';
 import {Background} from '../Home/styles';
 import {informationUserAction, logoutAction} from '../../store/ducks/user';
 import * as S from './styles';
-import {Alert} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
 
 export function Profile() {
   const dispatch = useDispatch();
 
-  const {currentUser} = useSelector((state) => state.user);
+  const {currentUser} = useSelector((state: any) => state.user);
 
   const [fullNameCurrent, setFullNameCurrent] = useState('');
   const [birthDateCurrent, setBirthDateCurrent] = useState('');

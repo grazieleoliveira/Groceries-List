@@ -19,7 +19,12 @@ export function Home() {
 
   return (
     <S.Background>
-      <Header title={`${currentUser.fullName} List`} type="Home" />
+      <Header
+        title={`${
+          currentUser?.fullName ? currentUser.fullName : `Groceries`
+        } List`}
+        type="Home"
+      />
 
       <SearchArea
         maxLength={50}

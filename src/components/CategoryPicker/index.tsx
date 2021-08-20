@@ -1,21 +1,46 @@
-import React from 'react';
-import {Picker, PickerProps} from '@react-native-picker/picker';
+import React, {useState} from 'react';
+
 import * as S from './styles';
 
-export function CategoryPicker({...rest}: PickerProps) {
+export function CategoryPicker({itemSelect, setItem, categories}) {
+  const [showList, setShowList] = useState(false);
+
+  const selectItem = (item) => {
+    setItem(item);
+    setShowList(false);
+  };
+
+  const renderItems = ({item}) => {
+    return (
+      <S.Touchable onPress={() => selectItem(item)}>
+        <S.ContainerList>
+          <S.TitleItem>{item.name}</S.TitleItem>
+        </S.ContainerList>
+      </S.Touchable>
+    );
+  };
+
   return (
-    <S.SelectContainer>
-      <S.SelectCategory activeOpacity={1}>
-        <Picker {...rest}>
-          <Picker.Item label="Selecionar Categoria" value="" />
-          <Picker.Item label="Outros" value="Outros" />
-          <Picker.Item label="Carnes" value="Carnes" />
-          <Picker.Item label="Frutas" value="Frutas" />
-          <Picker.Item label="Legumes" value="Legumes" />
-          <Picker.Item label="Frios" value="Frios" />
-          <Picker.Item label="Guloseimas" value="Guloseimas" />
-        </Picker>
-      </S.SelectCategory>
-    </S.SelectContainer>
+    <S.Container>
+      <S.Label>Categoria</S.Label>
+      <S.ContainerPicker>
+        <S.Touchable onPress={() => setShowList(!showList)}>
+          <S.PlaceholderText>
+            {itemSelect || 'Escolha Categoria'}
+          </S.PlaceholderText>
+          {/* <S.IconPicker name={showList ? 'angle-up' : 'angle-down'} /> */}
+        </S.Touchable>
+
+        {showList && (
+          <S.List
+            data={categories}
+            extraData={categories}
+            renderItem={renderItems}
+            keyExtractor={(item) => item.id.toString()}
+            showsVerticalScrollIndicator={false}
+          />
+        )}
+      </S.ContainerPicker>
+    </S.Container>
   );
 }
