@@ -1,5 +1,4 @@
 import React from 'react';
-import {View, Text} from 'react-native';
 import {Container} from './styles';
 
 import * as S from './styles';
@@ -24,7 +23,7 @@ type Props = {
   data: ProductProps;
 };
 
-export function ContentItem({data}: Props) {
+export const ContentItem: React.FC<Props> = ({data}) => {
   return (
     <Background>
       <Container>
@@ -41,4 +40,4 @@ export function ContentItem({data}: Props) {
       <S.Divider />
     </Background>
   );
-}
+};
