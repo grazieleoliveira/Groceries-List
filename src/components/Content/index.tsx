@@ -46,6 +46,7 @@ export function Content() {
   return (
     <Container>
       <FlatList
+        style={{marginTop: 10}}
         data={list}
         extraData={list}
         renderItem={renderCategory}

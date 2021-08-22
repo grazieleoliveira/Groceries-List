@@ -6,16 +6,21 @@ export const Container = styled.View`
   justify-content: center;
   align-items: flex-start;
   background-color: white;
+  padding-left: 24px;
+  padding-right: 24px;
+  margin-top: 18px;
 `;
 
-export const Label = styled.Text`
-  font-size: 24px;
-  color: ${theme.colors.primary};
+export const ItemText = styled.Text`
+  padding-left: 16px;
+  font-size: 16px;
+  color: ${theme.colors.secondary100};
 `;
 
 export const PlaceholderText = styled.Text`
-  font-size: 22px;
-  color: ${theme.colors.primary};
+  padding-left: 16px;
+  font-size: 16px;
+  color: ${theme.colors.secondary30};
 `;
 
 export const Touchable = styled.TouchableOpacity`
@@ -26,22 +31,24 @@ export const Touchable = styled.TouchableOpacity`
 `;
 
 export const ContainerPicker = styled.View`
-  padding: 20px 10px;
+  height: 50px;
   width: 100%;
-  border-radius: 10px;
-  margin-top: 15px;
-  background-color: #eeee;
+  background-color: ${theme.colors.secondary60};
+  border-radius: 50px;
+  justify-content: center;
 `;
 
 export const TitleItem = styled.Text`
-  font-size: 20px;
-  margin-bottom: 20px;
+  padding-left: 16px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 16px;
   color: black;
 `;
 
 export const ContainerList = styled.View`
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const ContainerModal = styled.TouchableOpacity`
@@ -49,12 +56,13 @@ export const ContainerModal = styled.TouchableOpacity`
 `;
 
 export const List = styled.FlatList`
-  height: 110px;
-  padding: 10px;
+  width: 100%;
+  height: 120px;
   margin-top: 10px;
-  margin-bottom: 20px;
+  border-radius: 10px;
+  background-color: ${theme.colors.secondary60};
 `;
 
-// export const IconPicker = styled((props) => Icon(props, 'FW'))`
-//   font-size: 20px;
-// `;
+export const IconPicker = styled((props) => Icon(props, 'FW'))`
+  font-size: 20px;
+`;

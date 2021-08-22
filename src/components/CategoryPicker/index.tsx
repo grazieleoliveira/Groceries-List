@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import {theme} from '../../global/styles/theme';
 
 import * as S from './styles';
 
@@ -22,25 +24,29 @@ export function CategoryPicker({itemSelect, setItem, categories}) {
 
   return (
     <S.Container>
-      <S.Label>Categoria</S.Label>
       <S.ContainerPicker>
-        <S.Touchable onPress={() => setShowList(!showList)}>
-          <S.PlaceholderText>
-            {itemSelect || 'Escolha Categoria'}
-          </S.PlaceholderText>
-          {/* <S.IconPicker name={showList ? 'angle-up' : 'angle-down'} /> */}
-        </S.Touchable>
-
-        {showList && (
-          <S.List
-            data={categories}
-            extraData={categories}
-            renderItem={renderItems}
-            keyExtractor={(item) => item.id.toString()}
-            showsVerticalScrollIndicator={false}
+        <S.Touchable activeOpacity={0.7} onPress={() => setShowList(!showList)}>
+          {!itemSelect && (
+            <S.PlaceholderText>Select Category</S.PlaceholderText>
+          )}
+          {itemSelect && <S.ItemText>{itemSelect}</S.ItemText>}
+          <Icon
+            style={{paddingRight: 16}}
+            name={showList ? 'keyboard-arrow-up' : 'keyboard-arrow-down'}
+            size={30}
+            color={theme.colors.secondary30}
           />
-        )}
+        </S.Touchable>
       </S.ContainerPicker>
+      {showList && (
+        <S.List
+          data={categories}
+          extraData={categories}
+          renderItem={renderItems}
+          keyExtractor={(item) => item.id.toString()}
+          showsVerticalScrollIndicator={false}
+        />
+      )}
     </S.Container>
   );
 }
