@@ -12,10 +12,10 @@ export type ProductProps = {
   name: string;
   quantity: string;
   price: string;
-  category: string;
 };
 
 export type AllProductProps = {
+  id: string;
   category: string;
   data: ProductProps[];
 };
@@ -23,9 +23,10 @@ export type AllProductProps = {
 type Props = {
   data: ProductProps;
   onEdit: (event: GestureResponderEvent) => void;
+  onDelete: (event: GestureResponderEvent) => void;
 };
 
-export const ContentItem: React.FC<Props> = ({data, onEdit}) => {
+export const ContentItem: React.FC<Props> = ({data, onEdit, onDelete}) => {
   return (
     <Background>
       <Container>
@@ -37,7 +38,7 @@ export const ContentItem: React.FC<Props> = ({data, onEdit}) => {
           </S.TextPriceUnd>
         </S.InfoContainer>
         <EditButton onPress={onEdit} />
-        <DeleteButton />
+        <DeleteButton onPress={onDelete} />
       </Container>
       <S.Divider />
     </Background>

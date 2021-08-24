@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet} from 'react-native';
 import {v4 as uuidv4} from 'uuid';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
@@ -11,6 +10,7 @@ import {Background} from '../Home/styles';
 import {CategoryPicker} from '../../components/CategoryPicker';
 import 'react-native-get-random-values';
 import {informationGroceryAction} from '../../store/ducks/grocery';
+import {AllProductProps, ProductProps} from '../../components/ContentItem';
 
 export function AddItem() {
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ export function AddItem() {
 
     const newList = cloneDeep(groceryList);
 
-    newList.map((categories) => {
+    newList.map((categories: AllProductProps) => {
       if (categories.id === category.id) {
         return categories.data.push(newItem);
       }
@@ -59,8 +59,8 @@ export function AddItem() {
   const saveEditedItem = () => {
     const newList = cloneDeep(groceryList);
 
-    newList.map((currentCategory) => {
-      currentCategory.data.map((currentItem) => {
+    newList.map((currentCategory: AllProductProps) => {
+      currentCategory.data.map((currentItem: ProductProps) => {
         if (currentItem.id === item.id) {
           currentItem.name = name;
           currentItem.quantity = quantity;

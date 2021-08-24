@@ -5,7 +5,7 @@ import {theme} from '../../global/styles/theme';
 
 export function DeleteButton({...rest}: TouchableOpacityProps) {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity {...rest}>
       <MaterialCommunityIcons
         name="trash-can-outline"
         size={30}

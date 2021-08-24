@@ -1,7 +1,8 @@
-import { PRODUCTS_BY_CATEGORY } from "../../../utils/categories";
+import {PRODUCTS_BY_CATEGORY} from '../../../utils/categories';
 
 export const Types = {
   SET_INFORMATION_GROCERY: 'SET_INFORMATION_GROCERY',
+  RESET_INFORMATION_GROCERY: 'RESET_INFORMATION_GROCERY',
 };
 
 const INITIAL_STATE = {
@@ -15,6 +16,8 @@ export default function reducer(state = INITIAL_STATE, {type, payload}) {
         ...state,
         groceryList: payload.groceryList,
       };
+    case Types.RESET_INFORMATION_GROCERY:
+      return {...INITIAL_STATE};
 
     default:
       return state;
@@ -23,5 +26,10 @@ export default function reducer(state = INITIAL_STATE, {type, payload}) {
 
 export const informationGroceryAction = (groceryList) => ({
   type: Types.SET_INFORMATION_GROCERY,
+  payload: {groceryList},
+});
+
+export const resetInfoGroceryAction = (groceryList) => ({
+  type: Types.RESET_INFORMATION_GROCERY,
   payload: {groceryList},
 });

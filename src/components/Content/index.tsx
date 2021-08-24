@@ -1,14 +1,16 @@
-import {FlatList, Text, View} from 'react-native';
+import {FlatList, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
-import {AllProductProps, ContentItem} from '../ContentItem';
+import {cloneDeep} from 'lodash';
+import {AllProductProps, ContentItem, ProductProps} from '../ContentItem';
 import {Container} from './styles';
 import {ContentHeader} from '../ContentHeader';
 import {Background} from '../Background';
-
+import {informationGroceryAction} from '../../store/ducks/grocery';
 
 export function Content() {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
 
   const {groceryList} = useSelector((state: any) => state.grocery);
@@ -22,14 +24,31 @@ export function Content() {
     setList(newList);
   }, [groceryList]);
 
-  const editItem = (item) => {
+  const goEditItem = (item: ProductProps) => {
     navigation.navigate('AddItem', {item});
+  };
+
+  const deleteItem = (item: ProductProps) => {
+    const newList = cloneDeep(groceryList);
+
+    newList.forEach((currentCategory: AllProductProps) => {
+      currentCategory.data = currentCategory.data.filter(
+        (currentItem) => currentItem.id !== item.id,
+      );
+    });
+
+    console.tron.log('Item', newList);
+    dispatch(informationGroceryAction(newList));
   };
 
   const renderItemList = ({item}) => {
     return (
       <View style={{flex: 1}}>
-        <ContentItem data={item} onEdit={() => editItem(item)} />
+        <ContentItem
+          data={item}
+          onEdit={() => goEditItem(item)}
+          onDelete={() => deleteItem(item)}
+        />
       </View>
     );
   };

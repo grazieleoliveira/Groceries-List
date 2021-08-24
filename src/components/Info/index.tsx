@@ -1,4 +1,5 @@
 import React from 'react';
+import { GestureResponderEvent } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {ButtonFinish} from '../ButtonFinish';
@@ -8,9 +9,10 @@ import * as S from './styles';
 type Props = {
   items: number;
   totalSpent: number;
+  onFinish: (event: GestureResponderEvent) => void;
 };
 
-export function Info({items, totalSpent}: Props) {
+export function Info({items, totalSpent, onFinish}: Props) {
   return (
     <S.InfoContainer>
       <S.Container>
@@ -19,7 +21,7 @@ export function Info({items, totalSpent}: Props) {
         <Icon name="attach-money" size={24} color="#FF9C65" />
         <S.InfoText>{totalSpent}R$</S.InfoText>
       </S.Container>
-      <ButtonFinish />
+      <ButtonFinish onPress={onFinish} />
     </S.InfoContainer>
   );
 }
