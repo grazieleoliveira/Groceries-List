@@ -1,13 +1,16 @@
 import {FlatList, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
-
+import {useNavigation} from '@react-navigation/native';
 import {AllProductProps, ContentItem} from '../ContentItem';
 import {Container} from './styles';
 import {ContentHeader} from '../ContentHeader';
 import {Background} from '../Background';
 
+
 export function Content() {
+  const navigation = useNavigation();
+
   const {groceryList} = useSelector((state: any) => state.grocery);
   const [list, setList] = useState<AllProductProps[]>([]);
 
@@ -19,10 +22,14 @@ export function Content() {
     setList(newList);
   }, [groceryList]);
 
+  const editItem = (item) => {
+    navigation.navigate('AddItem', {item});
+  };
+
   const renderItemList = ({item}) => {
     return (
       <View style={{flex: 1}}>
-        <ContentItem data={item} />
+        <ContentItem data={item} onEdit={() => editItem(item)} />
       </View>
     );
   };

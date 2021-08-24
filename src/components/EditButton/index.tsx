@@ -5,7 +5,7 @@ import {theme} from '../../global/styles/theme';
 
 export function EditButton({...rest}: TouchableOpacityProps) {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity {...rest}>
       <MaterialIcons name="edit" size={30} color={theme.colors.secondary80} />
     </TouchableOpacity>
   );

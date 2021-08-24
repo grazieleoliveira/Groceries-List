@@ -14,7 +14,7 @@ export function Home() {
   const [search, setSearch] = useState('');
 
   function handleAddItem() {
-    navigation.navigate('AddItem');
+    navigation.navigate('AddItem', {item: null});
   }
 
   return (

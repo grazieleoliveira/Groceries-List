@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet} from 'react-native';
 import {v4 as uuidv4} from 'uuid';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 
 import cloneDeep from 'lodash/cloneDeep';
@@ -14,6 +14,10 @@ import {informationGroceryAction} from '../../store/ducks/grocery';
 
 export function AddItem() {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
+  const route = useRoute();
+
+  const {item} = route.params;
 
   const {categoryList} = useSelector((state) => state.category);
   const {groceryList} = useSelector((state) => state.grocery);
@@ -23,11 +27,13 @@ export function AddItem() {
   const [price, setPrice] = useState('');
   const [category, setCategory] = useState('');
 
-  const navigation = useNavigation();
-
-  const isPlaceholder = (value: string) => {
-    return value === '';
-  };
+  useEffect(() => {
+    if (item) {
+      setName(item.name);
+      setQuantity(item.quantity);
+      setPrice(item.price);
+    }
+  }, []);
 
   const saveItem = () => {
     const newItem = {
@@ -50,9 +56,34 @@ export function AddItem() {
     navigation.goBack();
   };
 
+  const saveEditedItem = () => {
+    const newList = cloneDeep(groceryList);
+
+    newList.map((currentCategory) => {
+      currentCategory.data.map((currentItem) => {
+        if (currentItem.id === item.id) {
+          currentItem.name = name;
+          currentItem.quantity = quantity;
+          currentItem.price = price;
+          return null;
+        }
+        return null;
+      });
+      return null;
+    });
+
+    dispatch(informationGroceryAction(newList));
+    navigation.goBack();
+  };
+
+  console.tron.log('route', route);
+
   return (
     <Background>
-      <HeaderNav onDone={() => saveItem()} title="Add Item" />
+      <HeaderNav
+        onDone={item ? () => saveEditedItem() : () => saveItem()}
+        title={item ? 'Edit Item' : 'Add Item'}
+      />
       <TextArea onChangeText={setName} placeholder="Item Name" value={name} />
       <TextArea
         onChangeText={setQuantity}
@@ -66,24 +97,13 @@ export function AddItem() {
         value={price}
         placeholder="Price"
       />
-      <CategoryPicker
-        categories={categoryList}
-        itemSelect={category.name}
-        setItem={setCategory}
-      />
+      {!item && (
+        <CategoryPicker
+          categories={categoryList}
+          itemSelect={category.name}
+          setItem={setCategory}
+        />
+      )}
     </Background>
   );
 }
-
-const styles = StyleSheet.create({
-  placeholder: {
-    height: 50,
-    width: '100%',
-    color: '#989898', // PLACE HOLDER COLOR
-  },
-  picker: {
-    height: 50,
-    width: '100%',
-    color: 'black', // VALUE COLOR
-  },
-});

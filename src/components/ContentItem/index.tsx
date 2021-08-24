@@ -1,6 +1,7 @@
 import React from 'react';
-import {Container} from './styles';
+import {GestureResponderEvent} from 'react-native';
 
+import {Container} from './styles';
 import * as S from './styles';
 import {Background} from '../../screens/Home/styles';
 import {EditButton} from '../EditButton';
@@ -21,9 +22,10 @@ export type AllProductProps = {
 
 type Props = {
   data: ProductProps;
+  onEdit: (event: GestureResponderEvent) => void;
 };
 
-export const ContentItem: React.FC<Props> = ({data}) => {
+export const ContentItem: React.FC<Props> = ({data, onEdit}) => {
   return (
     <Background>
       <Container>
@@ -34,7 +36,7 @@ export const ContentItem: React.FC<Props> = ({data}) => {
             {data.quantity} unid. — {data.price}R$
           </S.TextPriceUnd>
         </S.InfoContainer>
-        <EditButton />
+        <EditButton onPress={onEdit} />
         <DeleteButton />
       </Container>
       <S.Divider />
