@@ -15,18 +15,34 @@ export function Home() {
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
+  const {groceryList} = useSelector((state) => state.grocery);
   const {currentUser} = useSelector((state) => state.user);
   const [search, setSearch] = useState('');
+  const [cartItems, setCartItems] = useState(0);
+  const [priceItems, setPriceItems] = useState(0);
+
+  useEffect(() => {
+    let sumQtd = 0;
+    let sumPrice = 0;
+    const newList = cloneDeep(groceryList);
+
+    newList.map((currentCategory) => ({
+      itemPrice: currentCategory.data.forEach((item) => {
+        sumQtd += parseInt(item.quantity, 10);
+        sumPrice += parseInt(item.price, 10);
+      }),
+    }));
+
+    setCartItems(sumQtd);
+    setPriceItems(sumPrice);
+  }, [groceryList]);
 
   function handleAddItem() {
     navigation.navigate('AddItem', {item: null});
   }
 
   const onFinish = () => {
-    const newList = CATEGORIES;
-
-    console.tron.log('Item', newList);
-    dispatch(resetInfoGroceryAction(newList));
+    dispatch(resetInfoGroceryAction());
   };
 
   return (
@@ -44,7 +60,11 @@ export function Home() {
         onChangeText={setSearch}
         placeholder="Search"
       />
-      <Info items={11} totalSpent={200} onFinish={() => onFinish()} />
+      <Info
+        items={cartItems}
+        totalSpent={priceItems}
+        onFinish={() => onFinish()}
+      />
       <Content />
       <S.FABPlus icon="plus" onPress={handleAddItem} color="#FFFFFF" />
     </S.Background>

@@ -29,7 +29,6 @@ export const informationGroceryAction = (groceryList) => ({
   payload: {groceryList},
 });
 
-export const resetInfoGroceryAction = (groceryList) => ({
+export const resetInfoGroceryAction = () => ({
   type: Types.RESET_INFORMATION_GROCERY,
-  payload: {groceryList},
 });

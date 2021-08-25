@@ -41,6 +41,7 @@ export function AddItem() {
       name,
       price,
       quantity,
+      isChecked: false,
     };
 
     const newList = cloneDeep(groceryList);
