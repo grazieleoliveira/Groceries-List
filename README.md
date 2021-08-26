@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-  <a href="https://imgur.com/A3D9hGc"><img width="75%" src="https://i.imgur.com/A3D9hGc.png" title="source: imgur.com" /></a>
+  <a href="https://imgur.com/A3D9hGc"><img width="85%" src="https://i.imgur.com/A3D9hGc.png" title="source: imgur.com" /></a>
 </p>
 <h4 align="center">React Native application to help supermarket customers with their groceries </h4>
 
@@ -19,17 +19,17 @@ This is the second project of the Lead Dell mentoring program. My goal with this
 
 ### ⚙️ Libraries
 <ul>
-  <li>Redux -> Application state management</li>
-  <li>Styled-Components -> Stylization </li>
-  <li>React Navigation -> Manage the screen navigation</li>
-  <li>react-native-vector-icons -> Application icons </li>
+  <li>Redux ➜ Application state management</li>
+  <li>Styled-Components ➜ Stylization </li>
+  <li>React Navigation ➜ Screen navigation management</li>
+  <li>react-native-vector-icons ➜ Application icons </li>
 </ul>
 
 ### ⚙️ Libraries to increase the productivity during development
 <ul>
-  <li>Eslint -> Linter tool for identifying and reporting on patterns </li>
-  <li>Reactotron -> To debug the app, viewing its current state</li>
-  <li>Prettier -> Code formatter </li>
+  <li>Eslint ➜ Linter tool for identifying and reporting on patterns </li>
+  <li>Reactotron ➜ To debug the app, viewing its current state</li>
+  <li>Prettier ➜ Code formatter </li>
 </ul>
 
 
