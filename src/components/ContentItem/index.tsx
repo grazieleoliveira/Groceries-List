@@ -51,7 +51,6 @@ export const ContentItem: React.FC<Props> = ({data, onEdit, onDelete}) => {
       return null;
     });
 
-    console.tron.log('Itemm', newList);
     dispatch(informationGroceryAction(newList));
   };
 

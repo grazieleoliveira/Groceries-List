@@ -77,8 +77,6 @@ export function AddItem() {
     navigation.goBack();
   };
 
-  console.tron.log('route', route);
-
   return (
     <Background>
       <HeaderNav

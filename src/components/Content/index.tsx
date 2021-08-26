@@ -8,8 +8,9 @@ import {Container} from './styles';
 import {ContentHeader} from '../ContentHeader';
 import {Background} from '../Background';
 import {informationGroceryAction} from '../../store/ducks/grocery';
+import {CategoryPicker} from '../CategoryPicker';
 
-export function Content() {
+export function Content(searchString) {
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
@@ -20,9 +21,35 @@ export function Content() {
     const newList = groceryList.filter(
       (category: any) => category.data.length !== 0,
     );
-    console.tron.log(`UseEffect`, groceryList);
-    setList(newList);
-  }, [groceryList]);
+
+    const filteredList = cloneDeep(groceryList);
+
+    const searchName = searchString;
+
+    if (
+      searchName.searchString === '' ||
+      searchName.searchString === undefined ||
+      searchName.searchString === null
+    ) {
+      setList(newList);
+    } else {
+      filteredList.map((currentCategory: AllProductProps) => {
+        currentCategory.data = currentCategory.data.filter((currentItem) =>
+          currentItem.name
+            .toLowerCase()
+            .includes(searchName.searchString.toLowerCase()),
+        );
+        return null;
+      });
+
+      const newFilteredList = filteredList.filter(
+        (category: any) => category.data.length !== 0,
+      );
+      setList(newFilteredList);
+    }
+
+
+  }, [groceryList, searchString]);
 
   const goEditItem = (item: ProductProps) => {
     navigation.navigate('AddItem', {item});
@@ -37,7 +64,6 @@ export function Content() {
       );
     });
 
-    console.tron.log('Item', newList);
     dispatch(informationGroceryAction(newList));
   };
 

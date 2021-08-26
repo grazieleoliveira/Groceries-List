@@ -59,13 +59,14 @@ export function Home() {
         autoCorrect={false}
         onChangeText={setSearch}
         placeholder="Search"
+        value={search}
       />
       <Info
         items={cartItems}
         totalSpent={priceItems}
         onFinish={() => onFinish()}
       />
-      <Content />
+      <Content searchString={search} />
       <S.FABPlus icon="plus" onPress={handleAddItem} color="#FFFFFF" />
     </S.Background>
   );
