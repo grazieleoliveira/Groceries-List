@@ -8,7 +8,12 @@ import {Container} from './styles';
 import {ContentHeader} from '../ContentHeader';
 import {Background} from '../Background';
 import {informationGroceryAction} from '../../store/ducks/grocery';
-import {CategoryPicker} from '../CategoryPicker';
+import {ADD_ITEM} from '../../constants/routes';
+import {
+  filterCategoriesWithData,
+  removeItem,
+  searchListFilter,
+} from '../../utils/grocery';
 
 export function Content(searchString) {
   const dispatch = useDispatch();
@@ -18,53 +23,25 @@ export function Content(searchString) {
   const [list, setList] = useState<AllProductProps[]>([]);
 
   useEffect(() => {
-    const newList = groceryList.filter(
-      (category: any) => category.data.length !== 0,
-    );
-
-    const filteredList = cloneDeep(groceryList);
-
+    const fullList = filterCategoriesWithData(groceryList);
+    const listToBeFiltered = cloneDeep(groceryList);
     const searchName = searchString;
-
-    if (
-      searchName.searchString === '' ||
-      searchName.searchString === undefined ||
-      searchName.searchString === null
-    ) {
-      setList(newList);
-    } else {
-      filteredList.map((currentCategory: AllProductProps) => {
-        currentCategory.data = currentCategory.data.filter((currentItem) =>
-          currentItem.name
-            .toLowerCase()
-            .includes(searchName.searchString.toLowerCase()),
-        );
-        return null;
-      });
-
-      const newFilteredList = filteredList.filter(
-        (category: any) => category.data.length !== 0,
-      );
-      setList(newFilteredList);
-    }
-
-
+    const newFilteredList = searchListFilter(
+      fullList,
+      listToBeFiltered,
+      searchName.searchString,
+    );
+    setList(newFilteredList);
   }, [groceryList, searchString]);
 
   const goEditItem = (item: ProductProps) => {
-    navigation.navigate('AddItem', {item});
+    navigation.navigate(ADD_ITEM, {item});
   };
 
   const deleteItem = (item: ProductProps) => {
     const newList = cloneDeep(groceryList);
-
-    newList.forEach((currentCategory: AllProductProps) => {
-      currentCategory.data = currentCategory.data.filter(
-        (currentItem) => currentItem.id !== item.id,
-      );
-    });
-
-    dispatch(informationGroceryAction(newList));
+    const updatedList = removeItem(newList, item);
+    dispatch(informationGroceryAction(updatedList));
   };
 
   const renderItemList = ({item}) => {

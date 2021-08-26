@@ -11,6 +11,7 @@ import {CategoryPicker} from '../../components/CategoryPicker';
 import 'react-native-get-random-values';
 import {informationGroceryAction} from '../../store/ducks/grocery';
 import {AllProductProps, ProductProps} from '../../components/ContentItem';
+import {addItem} from '../../utils/grocery';
 
 export function AddItem() {
   const dispatch = useDispatch();
@@ -43,17 +44,9 @@ export function AddItem() {
       quantity,
       isChecked: false,
     };
-
     const newList = cloneDeep(groceryList);
-
-    newList.map((categories: AllProductProps) => {
-      if (categories.id === category.id) {
-        return categories.data.push(newItem);
-      }
-      return null;
-    });
-
-    dispatch(informationGroceryAction(newList));
+    const updatedList = addItem(newList, category, newItem);
+    dispatch(informationGroceryAction(updatedList));
     navigation.goBack();
   };
 

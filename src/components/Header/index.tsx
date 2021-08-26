@@ -3,6 +3,7 @@ import {useNavigation} from '@react-navigation/native';
 import {View} from 'react-native';
 
 import * as S from './styles';
+import { PROFILE } from '../../constants/routes';
 
 type Props = {
   title: string;
@@ -20,7 +21,7 @@ export function Header({title, type}: Props) {
   const navigation = useNavigation();
 
   function handleNavigate() {
-    navigation.navigate('Profile');
+    navigation.navigate(PROFILE);
   }
 
   if (type === 'Home') {

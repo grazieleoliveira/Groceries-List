@@ -7,6 +7,7 @@ import {Home} from '../screens/Home';
 import {AddItem} from '../screens/AddItem';
 import {Login} from '../screens/Login';
 import {Profile} from '../screens/Profile';
+import {HOME, LOGIN, ADD_ITEM, PROFILE} from '../constants/routes';
 
 const {Navigator, Screen} = createStackNavigator();
 
@@ -18,15 +19,15 @@ export function AppRoutes() {
           backgroundColor: theme.colors.secondary50,
         },
       }}>
-      <Screen name="Home" component={Home} options={{headerShown: false}} />
+      <Screen name={HOME} component={Home} options={{headerShown: false}} />
       <Screen
-        name="AddItem"
+        name={ADD_ITEM}
         component={AddItem}
         options={{headerShown: false}}
       />
-      <Screen name="Login" component={Login} options={{headerShown: false}} />
+      <Screen name={LOGIN} component={Login} options={{headerShown: false}} />
       <Screen
-        name="Profile"
+        name={PROFILE}
         component={Profile}
         options={{headerShown: false}}
       />

@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import {GestureResponderEvent, Text, View} from 'react-native';
+import React from 'react';
+import {GestureResponderEvent, View} from 'react-native';
 
 import {cloneDeep} from 'lodash';
-import {useNavigation} from '@react-navigation/native';
+
 import {useDispatch, useSelector} from 'react-redux';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Container} from './styles';

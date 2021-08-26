@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
+import {cloneDeep} from 'lodash';
 import {Header} from '../../components/Header';
 import {Info} from '../../components/Info';
 import {SearchArea} from '../../components/SearchArea';
 
 import * as S from './styles';
 import {Content} from '../../components/Content';
-import {CATEGORIES} from '../../utils/categories';
 import {resetInfoGroceryAction} from '../../store/ducks/grocery';
-import {cloneDeep} from 'lodash';
+import { ADD_ITEM } from '../../constants/routes';
 
 export function Home() {
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ export function Home() {
   }, [groceryList]);
 
   function handleAddItem() {
-    navigation.navigate('AddItem', {item: null});
+    navigation.navigate(ADD_ITEM, {item: null});
   }
 
   const onFinish = () => {
